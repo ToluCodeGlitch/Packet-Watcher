@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Packet Guardian — v1</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>Packet Guardian</h1>
+    <p class="tag">Simple network log analyzer — upload logs, find suspicious flows</p>
+  </header>
+
+  <main>
+    <section class="controls">
+      <label for="fileInput" class="btn">Upload log file (text)</label>
+      <input id="fileInput" type="file" accept=".txt,.log" />
+      <button id="runBtn" class="btn primary">Run Detector</button>
+      <button id="downloadReport" class="btn" disabled>Download Report</button>
+    </section>
+
+    <section class="settings">
+      <h3>Detector settings</h3>
+      <div class="row">
+        <label>Time window (seconds)</label>
+        <input id="timeWindow" type="number" value="60" min="1" />
+      </div>
+      <div class="row">
+        <label>Byte threshold</label>
+        <input id="byteThreshold" type="number" value="1000000" min="1" />
+      </div>
+      <div class="row">
+        <label>Consecutive increasing packets to flag</label>
+        <input id="increasingCount" type="number" value="3" min="1" />
+      </div>
+    </section>
+
+    <section>
+      <h3>Log Input</h3>
+      <textarea id="logArea" placeholder="Or paste logs here manually..." rows="10"></textarea>
+    </section>
+
+    <section>
+      <h3>Results</h3>
+      <div id="alerts" class="alerts"></div>
+      <table id="summary" class="summary" hidden>
+        <thead><tr><th>Source</th><th>Dest</th><th>Bytes in window</th><th>Reason</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </section>
+
+    <footer>
+      <p>Made by Tolulope Oni — Packet Guardian v1</p>
+    </footer>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
